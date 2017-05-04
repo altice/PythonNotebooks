@@ -36,9 +36,13 @@ var MODULE = (function (my) {
 }(MODULE));
 
 
-          states_dictionary={ 
+          dictionary={ 
      "Violates organizational policy":["2016-10-21T00:00:00", 0.176249], 
+      "Purchases mail order bride":["2016-11-21T00:00:00", 0.276249],
+      "Drives under alcohol":["2016-12-21T00:00:00", 0.476249]
    
 };
 
-console.log(states_dictionary)
+
+
+console.log(dictionary)
