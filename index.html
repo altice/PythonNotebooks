@@ -1,0 +1,82 @@
+<body>
+	
+
+</script>
+	<script>
+
+    //   console.log(result)
+    //   var result = [{date:'2016-11-21',name:'Bob',score:0.1034947},{date:'2016-10-21',name:'Bill',score:0.2081911},{date:'2016-10-21',name:'Mary',score:0.234947},{date:'2016-10-21',name:'Bob',score:0.1034947},{date:'2016-11-21',name:'Bill',score:0.2081911},{date:'2016-11-21',name:'Mary',score:0.234947},{date:'2016-12-21',name:'Bob',score:0.1034947},{date:'2016-12-21',name:'Bill',score:0.2081911},{date:'2016-12-21',name:'Mary',score:0.234947}],
+    // selected_Names = ['Bob', 'Mary'],
+    // res = result.filter(v => selected_Names.indexOf(v.name) > -1);
+  
+    // console.log(res);
+
+
+    const result = [{date:'2016-11-21',name:'Bob',score:0.1034947},{date:'2016-10-21',name:'Bill',score:0.2081911},{date:'2016-10-21',name:'Mary',score:0.234947},{date:'2016-10-21',name:'Bob',score:0.1034947},{date:'2016-11-21',name:'Bill',score:0.2081911},{date:'2016-11-21',name:'Mary',score:0.234947},{date:'2016-12-21',name:'Bob',score:0.1034947},{date:'2016-12-21',name:'Bill',score:0.2081911},{date:'2016-12-21',name:'Mary',score:0.234947}];
+
+  
+const filterNames = arr => names => arr.filter(e => names.includes(e.name));
+
+const names = ['Bob', 'Mary'];
+
+const res = filterNames(result)(names);
+
+// console.log(JSON.stringify(res, null, 2));
+
+
+var nodes = ['Violates organizational policy','Exhibits gratitude']
+
+var data = [{ display_name: "Violates organizational policy", eval_date:
+"2016-12-21T00:00:00",scores: 0.76249 },{ display_name: "Violates organizational policy", eval_date:
+"2016-11-21T00:00:00",scores: 0.276249 },{ display_name: "Exhibits gratitude", eval_date:
+"2016-12-21T00:00:00",scores: 0.176249 },{ display_name: "Exhibits gratitude", eval_date:
+"2016-11-21T00:00:00",scores: 0.2476249 }]
+
+
+
+
+
+
+function filterByNode(rows, node) {
+
+	rows.filter(function(i,n)
+		{	
+			return n.display_name==='Violates organizational policy'; 
+});
+
+  };
+
+
+
+for (var index in nodes) {
+	name = nodes[index]
+	console.log(filterByNode(data,name))
+
+}
+
+
+var json = { "Lofts": "none", "Maisons": "2", "HOMES": [{ "home_id": "1", "price": "925", "num_of_beds": "2" }, { "home_id": "2", "price": "1425", "num_of_beds": "4", }, { "home_id": "3", "price": "333", "num_of_beds": "5", }] };
+
+json.HOMES = json.HOMES.filter(function (a) {
+    return a.home_id === '2';
+});
+
+// console.log(json.HOMES)
+
+
+// function isBigEnough(value) {
+//   return value >= 10;
+// }
+
+// var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+// console.log('Filtered', filtered)
+// filtered is [12, 130, 44]
+
+// var arr = ['a','b','c']
+// console.log(Object.keys(arr))
+
+
+
+	</script>
+</body>
+
