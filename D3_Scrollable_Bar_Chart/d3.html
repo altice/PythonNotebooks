@@ -4,9 +4,78 @@
 		<meta charset="utf-8">
 		<title>D3.js Essential Training for Data Scientists</title>
 		<link rel="stylesheet" type="text/css" href="style.css" >
+		<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src='http://crossfilter.github.io/crossfilter/crossfilter.v1.min.js'></script>
 	</head>
 
 	<body>
+		<script>
+			console.log('Data')
+			
+			var data = [{"key":"http://viralfeeds.biz/url2/v10","interactions":276200,"unique_authors":141400,"topic":"BMW"},{"key":"http://www.dat.de/angebote/verlagsprodukte/leitfaden-kraftstoffverbrauch.html","interactions":28000,"unique_authors":25400,"topic":"BMW"},{"key":"http://insider.foxnews.com/2016/03/20/florida-man-steals-bmw-after-trying-buy-it-ebt-card-food-stamps","interactions":27300,"unique_authors":26100,"topic":"BMW"},{"key":"http://bit.ly/1pQ4wmf","interactions":26500,"unique_authors":26500,"topic":"BMW"},{"key":"http://bit.ly/22DMFjE","interactions":13800,"unique_authors":13800,"topic":"BMW"},{"key":"http://blog.dupontregistry.com/bmw/bmw-3-0-csl-hommage-rs-booming-engine/","interactions":10900,"unique_authors":10500,"topic":"BMW"},{"key":"http://bit.ly/1MsBH98","interactions":10800,"unique_authors":10300,"topic":"BMW"},{"key":"http://www.topgear.com/car-news/classic/icymi-bmws-m4-gts-and-predecessors","interactions":9600,"unique_authors":9200,"topic":"BMW"},{"key":"http://bit.ly/1SD75yD","interactions":9000,"unique_authors":9000,"topic":"BMW"},{"key":"https://www.g-power.com/onlineshop-de/","interactions":8300,"unique_authors":5600,"topic":"BMW"},{"key":"http://www.dat.de/angebote/verlagsprodukte/leitfaden-kraftstoffverbrauch.html","interactions":27900,"unique_authors":25400,"topic":"Cars"},{"key":"http://blog.dupontregistry.com/bmw/bmw-3-0-csl-hommage-rs-booming-engine/","interactions":10900,"unique_authors":10500,"topic":"Cars"},{"key":"http://www.msn.com/en-us/autos/autos-sports/ford-mustang-outsold-audi-tt-and-porsche-911-in-germany/ar-BBrwGGa?li=BBnb4R5","interactions":4500,"unique_authors":4300,"topic":"Cars"},{"key":"http://fastmusclecar.com/supercharged-cars/1966-ford-mustang-sema-show-car-custom-500hp/","interactions":4300,"unique_authors":3900,"topic":"Cars"},{"key":"http://fastmusclecar.com/muscle-cars/1968-ford-mustang-gt-cobrajet-fastback/","interactions":4300,"unique_authors":3500,"topic":"Cars"},{"key":"http://fastmusclecar.com/readers-rides/1967-ford-mustang-351c-prostreet-show-car/","interactions":4100,"unique_authors":3300,"topic":"Cars"},{"key":"http://fastmusclecar.com/muscle-cars/1965-ford-mustang-302-pro-touring/","interactions":3900,"unique_authors":3600,"topic":"Cars"},{"key":"http://bit.ly/1Mnhl18","interactions":3700,"unique_authors":2500,"topic":"Cars"},{"key":"http://fastmusclecar.com/best-muscle-cars/1965-ford-mustang-gt-restomod-347/","interactions":2900,"unique_authors":2700,"topic":"Cars"},{"key":"http://fastmusclecar.com/best-muscle-cars/1970-ford-mustang-g-code-boss-302/","interactions":2900,"unique_authors":2400,"topic":"Cars"},{"key":"http://www.roadandtrack.com/car-culture/news/a28751/lamborghini-countach-amphibious-replica/","interactions":7000,"unique_authors":6700,"topic":"Honda Civic"},{"key":"http://paultan.org/2016/04/07/iims-2016-new-honda-civic-launched-1-5l-turbo-only/","interactions":6600,"unique_authors":6100,"topic":"Honda Civic"},{"key":"http://carros.mercadolivre.com.br/honda/civic","interactions":4100,"unique_authors":3900,"topic":"Honda Civic"},{"key":"https://tw.autos.yahoo.com/news/rs%E9%A0%82%E7%B4%9A%E8%BB%8A%E5%9E%8B%E5%9…D%A3%E5%BC%8F%E7%99%BC%E8%A1%A8-%E4%B8%AD%E5%9C%8B%E7%89%88-043500327.html","interactions":3300,"unique_authors":3100,"topic":"Honda Civic"},{"key":"http://www.autoguide.com/auto-news/2016/03/honda-makes-it-official-all-turbo-civics-to-get-six-speed-manual.html","interactions":2800,"unique_authors":2600,"topic":"Honda Civic"},{"key":"http://paultan.org/2016/04/18/2016-honda-civic-spore-gets-1-6-only-from-rm318k/","interactions":2600,"unique_authors":2600,"topic":"Honda Civic"},{"key":"http://revistaautoesporte.globo.com/Noticias/noticia/2016/03/toyota-corolla-tambem-e-atualizado-nos-estados-unidos.html","interactions":2200,"unique_authors":2100,"topic":"Honda Civic"},{"key":"http://www.fastcar.co.uk/2016/03/31/stanced-honda-civic-ek-coupe/","interactions":2100,"unique_authors":2100,"topic":"Honda Civic"},{"key":"http://www.carbuzz.com/news/2016/3/24/Honda-Confirms-Civic-Hatchback-Will-Be-Fun-And-Talks-Type-R-And-Si-Release-Dates-7732651/","interactions":1800,"unique_authors":1800,"topic":"Honda Civic"},{"key":"http://bit.ly/_Fa%C3%A7aUmTestDrive","interactions":1700,"unique_authors":1600,"topic":"Honda Civic"},{"key":"http://oak.ctx.ly/r/4g9r7","interactions":13600,"unique_authors":13600,"topic":"Ford Mustang"},{"key":"http://oak.ctx.ly/r/4g9rm","interactions":12600,"unique_authors":11200,"topic":"Ford Mustang"},{"key":"http://www.carbuzz.com/news/2016/4/9/The-Ford-Mustang-Just-Outsold-Two-Of-Germany-s-Top-Sports-Cars-In-Germany-7732965/","interactions":8800,"unique_authors":8700,"topic":"Ford Mustang"},{"key":"http://bit.ly/1o46dL2","interactions":7200,"unique_authors":7200,"topic":"Ford Mustang"},{"key":"http://mensclubmagazine.info/top-10-best-mustangs/","interactions":7100,"unique_authors":6500,"topic":"Ford Mustang"},{"key":"http://www.roadandtrack.com/car-shows/new-york-auto-show/news/a28539/the-legendary-shelby-gt-h-is-back","interactions":6100,"unique_authors":5800,"topic":"Ford Mustang"},{"key":"http://racing.ford.com/enthusiasts/media-room/2016/03/shelby-american--hert…nive/ford-shelby-gt350r-mustang-names-sports-car-of-the-year-by-popul.html","interactions":4900,"unique_authors":4500,"topic":"Ford Mustang"},{"key":"http://www.msn.com/en-us/autos/autos-sports/ford-mustang-outsold-audi-tt-and-porsche-911-in-germany/ar-BBrwGGa?li=BBnb4R5","interactions":4500,"unique_authors":4300,"topic":"Ford Mustang"},{"key":"http://fastmusclecar.com/supercharged-cars/1966-ford-mustang-sema-show-car-custom-500hp/","interactions":4300,"unique_authors":3900,"topic":"Ford Mustang"},{"key":"http://fastmusclecar.com/muscle-cars/1968-ford-mustang-gt-cobrajet-fastback/","interactions":4300,"unique_authors":3500,"topic":"Ford Mustang"},{"key":"http://www.carbuzz.com/news/2016/4/7/Ford-Just-Made-The-Already-Epic-Shelby-GT350-Mustang-Better-But-At-What-Cost-7732922/","interactions":7400,"unique_authors":7300,"topic":"Ford Motor Company"},{"key":"http://ford.to/1Rk6KRp","interactions":7200,"unique_authors":7100,"topic":"Ford Motor Company"},{"key":"http://bit.ly/1o46dL2","interactions":7200,"unique_authors":7200,"topic":"Ford Motor Company"},{"key":"http://bit.ly/1RA30jl","interactions":3400,"unique_authors":3000,"topic":"Ford Motor Company"},{"key":"http://www.1320video.com/differential-explodes-at-drag-strip/","interactions":3000,"unique_authors":2900,"topic":"Ford Motor Company"},{"key":"http://tn.com.ar/autos/lo-ultimo/muy-especial-el-ford-mustang-del-que-se-haran-solo-140-unidades_661123","interactions":2800,"unique_authors":2700,"topic":"Ford Motor Company"},{"key":"http://www.ford-trucks.com/articles/ford-mustang-best-selling-car-in-germany/","interactions":2800,"unique_authors":2700,"topic":"Ford Motor Company"},{"key":"http://oak.ctx.ly/r/4i08j","interactions":2700,"unique_authors":2700,"topic":"Ford Motor Company"},{"key":"https://www.instagram.com/p/BCYFVkXpCSB/?taken-by=ford","interactions":2700,"unique_authors":2700,"topic":"Ford Motor Company"},{"key":"http://www.caradvice.com.au/419671/2019-ford-bronco-rendered-get-a-load-of-this/","interactions":2600,"unique_authors":2500,"topic":"Ford Motor Company"}];
+
+		
+			var xf = crossfilter(data);
+			var topic = xf.dimension(function (d) { return d.topic; }),
+    topics = topic.group().reduce(
+      function (p, v) { if (!p[v.key]) p[v.key] = 0; p[v.key] += v.interactions; return p; },
+      function (p, v) { if (!p[v.key]) p[v.key] = 0; p[v.key] -= v.interactions; return p; },
+      function () { return {}; }
+    )
+
+    var dispatch = d3.dispatch('redraw');
+
+    drawHorizontalBars();
+    // drawHorizontalBars('#chart', dispatch, topic, topics);
+    function drawHorizontalBars(selector, dispatch dimension, group) {
+
+    }
+
+   
+
+    // function drawHorizontalBars(selector, dispatch dimension, group) {
+
+    //   // var margin = {top: 20, right: 20, bottom:0, left:100},
+    //   //   width = 940 - margin.left - margin.right,
+    //   //   height = 900 - margin.top - margin.bottom
+
+    // }
+
+
+
+    // drawHorizontalBars('#chart', dispatch, topic, topics)
+
+
+  // var margin = {top: 20, right: 20, bottom: 0, left: 100},
+  //   width = 940 - margin.left - margin.right,
+  //   height = 900 - margin.top - margin.bottom;
+
+
+
+
+
+
+
+
+
+			var payments = crossfilter([
+  {date: "2011-11-14T16:17:54Z", quantity: 2, total: 190, tip: 100, type: "tab"},
+  {date: "2011-11-14T16:20:19Z", quantity: 2, total: 190, tip: 100, type: "tab"},
+  {date: "2011-11-14T16:28:54Z", quantity: 1, total: 300, tip: 200, type: "visa"},
+  {date: "2011-11-14T16:30:43Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+  {date: "2011-11-14T16:48:46Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+  {date: "2011-11-14T16:53:41Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+  {date: "2011-11-14T16:54:06Z", quantity: 1, total: 100, tip: 0, type: "cash"},
+  {date: "2011-11-14T16:58:03Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+  {date: "2011-11-14T17:07:21Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+  {date: "2011-11-14T17:22:59Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+  {date: "2011-11-14T17:25:45Z", quantity: 2, total: 200, tip: 0, type: "cash"},
+  {date: "2011-11-14T17:29:52Z", quantity: 1, total: 200, tip: 100, type: "visa"}
+]);
+   	var paymentsbyTotal = payments.dimension(function(d){return d.total})
+
+
+		</script>
   </body>
 
 </html>
